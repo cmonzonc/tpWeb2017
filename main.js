@@ -6,9 +6,13 @@ canvas.width=800
 canvas.height=600
 
 // Code temporaire pour tester le DnD
-new DnD(canvas);
-ctx.fillStyle = '#F0F0F0'; // set canvas' background color
+var drawSection = new Drawing();
+
+ctx.fillStyle = '#b8cbd6'; // set canvas' background color
 ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
+
+var pencil = new Pencil(ctx, drawSection, canvas);
+drawSection.paint(ctx, canvas);
 /////
 
 // Code temporaire pour tester l'affiche de la vue

@@ -1,60 +1,40 @@
-
 // Implémenter ici les 4 classes du modèle.
 // N'oubliez pas l'héritage !
+function Drawing() {
 
-var canvas = document.getElementById('myCanvas');
-var editingMode = { rect: 0, line: 1 };
+    this.forms = new Array();
 
-function Pencil(ctx, drawing, canvas) {
-	console.log("a");
-
-	this.currEditingMode = editingMode.line;
-	this.currLineWidth = 5;
-	this.currColour = '#000000';
-	this.currentShape = 0;
-
-	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
-
-//	new DnD(canvas, this);
-
-
-
-	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
-
-
-};
-
-	function getMousePosition(canvas, evt){
-
-		var rect = canvas.getBoundClientRect();
-
-		console.log(evt.x);
-		console.log(evt.y);
-		return {
-			x: evt.x - rect.left, 
-			y: evt.x - rect.top
-		};
-
-	};
-
-	function onInteractionStart(canvas, event){
-		console.log('a');
-
-	};
-
-	function onInteractionUpdate(canvas, event){
-		console.log('b');
-	};
+    this.addForm = function(form) {
+		this.forms.push(form);
+		console.log('asdasdasdasdasd')
+	}.bind(this);
 	
+    this.removeForm = function(index) {
+        this.forms.splice(index,1);
+    }.bind(this);
 
-	function onInteractionUpdate(canvas, event){
-		console.log('c');
-	};
+    this.getForms = function(){
+        return this.forms;
+    }.bind(this);
+}
 
-	canvas.addEventListener('onclick', this.getMousePosition, false);
-	canvas.addEventListener('mousedown', this.onInteractionStart, false);
-	canvas.addEventListener('mousemove', this.onInteractionEnd, false);
-	canvas.addEventListener('mouseup', this.onInteractionUpdate, false);
+function Form(color, weight) {
+    this.weight = weight;
+    this.color = color;
+}
 
+function Line(x1, y1, x2, y2, color, weight) {
+    Form.call(this, color, weight);
+    this.x1=x1;
+    this.y1=y1;
+    this.x2=x2;
+    this.y2=y2;
+}
 
-
+function Rectangle(x1, y1, length, height, color, weight) {
+	Form.call(this, color, weight);
+	this.height = height;
+    this.length = length;
+    this.x1=x1;
+	this.y1=y1;
+}
