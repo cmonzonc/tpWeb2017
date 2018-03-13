@@ -10,8 +10,8 @@ function DnD(canvas, interactor) {
 
   // Developper les 3 fonctions gérant les événements
 this.press = function(e){
-  var x = e.clientX - canvas.getClientRects().left;
-  var y = e.clientY - canvas.getClientRects().top;
+  var x = e.clientX - canvas.getBoundingClientRect().left;
+  var y = e.clientY - canvas.getBoundingClientRect().top;
   this.startPointX = x;
   this.startPointY = y;
   this.endPointX = x;
