@@ -10,3 +10,12 @@
 La figure ci-dessous montre l’état de l'application developpé sur ce repository.
 
 ![model3](https://github.com/cmonzonc/tpWeb2017/blob/develop/resources/tp5.png?raw=true)
+
+## Author
+
+* **MONZON, Christian** - *work* - [cmonzonc](https://github.com/cmonzonc)
+
+
+## License
+
+This project is licensed under the GNU License.
