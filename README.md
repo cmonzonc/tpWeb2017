@@ -1,4 +1,4 @@
-# TP-5
+# TP5
 
 ## Objectif
 
