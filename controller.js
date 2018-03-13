@@ -8,20 +8,40 @@ function Pencil(ctx, drawing, canvas) {
 	this.currentShape = 0;
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
-	new DnD(canvas, this);
+	this.DnD = new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
-	this.onIteractionUpdate = function(){
-
+	this.onInteractionUpdate = function(){
+		if (this.currentEditingMode == editingMode.rect){
+            var length = this.DnD.endPointX - this.DnD.startPointX;
+			var height = this.DnD.endPointY - this.DnD.startPointY;
+            this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, length, height, this.currentColor, this.currentLineWidth);
+        } else if (this.currentEditingMode == editingMode.line){
+            this.currentShape = new Line(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
+        }
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawing.paint(ctx, canvas);
+        this.currentShape.paint(ctx, canvas);
 	}.bind(this);
 
 	this.onInteractionEnd = function(){
-
+        if (this.currentEditingMode == editingMode.rect){
+            var length = this.DnD.endPointX - this.DnD.startPointX;
+			var height = this.DnD.endPointY - this.DnD.startPointY;
+            this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, length, height, this.currentColor, this.currentLineWidth);
+        } else if (this.currentEditingMode == editingMode.line){
+            this.currentShape = new Line(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
+        }
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawing.addForm(this.currentShape);
+        drawing.paint(ctx, canvas);
+        drawing.updateShapeList(this.currentShape);
+        this.currentShape = null;
 	}.bind(this);
 
 	this.onInteractionStart = function(){
-		this.currentLineWidth = document.getElementById("spinnerWidth");
-		this.currentColor = document.getElementById("spinnerWidth");
+		this.currentLineWidth = document.getElementById("spinnerWidth").value;
+		this.currentColor = document.getElementById("colour").value;
 		// Setting the selected shape
 		var radios = document.getElementsByName("mx");
 
@@ -29,21 +49,21 @@ function Pencil(ctx, drawing, canvas) {
 			if (radios[i].checked){
 			// do whatever you want with the checked radio
 			if(radios[i].id == "butLine"){
-				alert("line");
 				this.currentEditingMode = editingMode.line;
-				this.currentShape = new Rectangle();
+				// console.log(this.DnD.startPointX, this.DnD.startPointY, this.DnD.startPointX, this.DnD.startPointY, this.currentLineWidth, this.currentColor);
+				this.currentShape = new Line(this.DnD.startPointX, this.DnD.startPointY, this.DnD.startPointX, this.DnD.startPointY, this.currentColor, this.currentLineWidth);
+				this.currentShape.paint(ctx, canvas);
 			}else if(radios[i].id == "butRect"){
 				this.currentEditingMode = editingMode.rect;
-				this.currentShape = new Line();
-				alert("square");
+				this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, 0, 0, this.currentColor, this.currentLineWidth);
+				this.currentShape.paint(ctx, canvas);
 			}
-			// only one radio can be logically checked, don't check the rest
+			
 			break;
 		 }
 		}
 	}.bind(this);
-
-
-};
+	
+}
 
 
