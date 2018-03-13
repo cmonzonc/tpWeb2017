@@ -1,4 +1,3 @@
-
 // La création d'un Dnd requière un canvas et un interacteur.
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
@@ -11,10 +10,12 @@ function DnD(canvas, interactor) {
 
   // Developper les 3 fonctions gérant les événements
 this.press = function(e){
-  this.startPointX = e.x;
-  this.startPointY = e.y;
-  this.endPointX = e.x;
-  this.endPointY = e.y;
+  var x = e.clientX - canvas.getClientRects().left;
+  var y = e.clientY - canvas.getClientRects().top;
+  this.startPointX = x;
+  this.startPointY = y;
+  this.endPointX = x;
+  this.endPointY = y;
   startEvent = 1;
   interactor.onInteractionStart(DnD);
 }.bind(this);
@@ -22,8 +23,10 @@ this.press = function(e){
 this.move = function(e){
 
   if(startEvent){
-    this.endPointX = e.x;
-    this.endPointY = e.y;
+    var x = e.clientX - canvas.getBoundingClientRect().left;
+    var y = e.clientY - canvas.getBoundingClientRect().top;
+    this.endPointX = x;
+    this.endPointY = y;
     interactor.onInteractionUpdate(this);
   }
   
