@@ -1,6 +1,7 @@
 
 .myCanvas {
-
+    border: solid 1px #b7b7c1;
+    width: 100%;
 }
 
 .cf:before,.cf:after{content:"";display:table}.cf:after{clear:both}.cf{zoom:1}
@@ -29,9 +30,14 @@
 }
 
 
-form {
+#drawing-parameters {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 80px;
+    margin-top: 80px;
+}
+
+#canvasDiv {
+    margin: 0;
+    padding: 0;
 }
 
 .mx-button label {
