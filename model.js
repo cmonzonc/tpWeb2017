@@ -4,37 +4,41 @@ function Drawing() {
 
     this.forms = new Array();
 
-    this.addForm = function(form) {
-		this.forms.push(form);
-		console.log('asdasdasdasdasd')
-	}.bind(this);
-	
     this.removeForm = function(index) {
-        this.forms.splice(index,1);
+        console.log('a');
+        this.forms.splice(index, 1);
     }.bind(this);
 
     this.getForms = function(){
         return this.forms;
     }.bind(this);
+
+    this.addForm = function(form) {
+		this.forms.push(form);
+	}.bind(this);
+	
 }
 
 function Form(color, weight) {
     this.weight = weight;
     this.color = color;
+    this.name = "Form";
 }
 
 function Line(x1, y1, x2, y2, color, weight) {
     Form.call(this, color, weight);
-    this.x1=x1;
-    this.y1=y1;
-    this.x2=x2;
-    this.y2=y2;
+    this.x1 = x1;
+    this.y1 = y1;
+    this.x2 = x2;
+    this.y2 = y2;
+    this.name = "Line";
 }
 
 function Rectangle(x1, y1, length, height, color, weight) {
 	Form.call(this, color, weight);
 	this.height = height;
     this.length = length;
-    this.x1=x1;
-	this.y1=y1;
+    this.x1 = x1;
+    this.y1 = y1;
+    this.name = "Rectangle";
 }
