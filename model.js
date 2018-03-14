@@ -24,29 +24,32 @@ function Form(color, weight) {
     this.name = "Form";
 }
 
-function Line(x1, y1, x2, y2, color, weight) {
+function Line(x1, y1, x2, y2, color, weight, type) {
     Form.call(this, color, weight);
     this.x1 = x1;
     this.y1 = y1;
     this.x2 = x2;
     this.y2 = y2;
+    this.dash = type;
     this.name = "Line";
 }
 
-function Rectangle(x1, y1, length, height, color, weight) {
+function Rectangle(x1, y1, length, height, color, weight, type) {
 	Form.call(this, color, weight);
 	this.height = height;
     this.length = length;
     this.x1 = x1;
     this.y1 = y1;
+    this.dash = type;
     this.name = "Rectangle";
 }
 
-function Ellipse(x1, y1, length, height, color, weight) {
+function Ellipse(x1, y1, length, height, color, weight, type) {
 	Form.call(this, color, weight);
 	this.height = height;
     this.length = length;
     this.x1 = x1;
     this.y1 = y1;
+    this.dash = type;
     this.name = "Ellipse";
 }

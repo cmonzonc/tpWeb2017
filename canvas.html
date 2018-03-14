@@ -10,11 +10,11 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<form id="drawing-parameters" class="col-md-6">
+				<form id="drawing-parameters" class="col-md-7">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-6 mb-3">
+								<div class="col-md-5 mb-3">
 									<label for="mx">Shape</label>
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active">
@@ -28,14 +28,29 @@
 										</label>
 									</div>
 								</div>
-								<div class="col-md-3 mb-3">
+								<div class="col-md-2 mb-3">
 									<label for="spinnerWidth">Width</label>
 									<input class="form-control" id="spinnerWidth" type="number" min="1" max="50" step="1" value="5" size="4"/>
 								</div>
-								<div class="col-md-3 mb-3">
+								<div class="col-md-2 mb-3">
 									<label for="color">Color</label>
 									<input class="form-control" id="colour" type="color"/>
 								</div>
+
+
+								<div class="col-md-2 mb-3">
+									<label for="type-line">Line type</label>
+									<div class="btn-group btn-group-toggle" data-toggle="buttons">
+										<label class="btn btn-secondary active">
+										<input type="radio" name="type-line" id="solid" autocomplete="off" checked> Solid
+										</label>
+										<label class="btn btn-secondary">
+										<input type="radio" name="type-line" id="dashed" autocomplete="off"> Dashed
+										</label>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 					</div>
