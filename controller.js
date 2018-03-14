@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1 };
+var editingMode = { rect: 0, line: 1, ellipse: 2 };
 
 function Pencil(ctx, drawing, canvas) {
 	this.currentEditingMode = editingMode.line;
@@ -18,6 +18,8 @@ function Pencil(ctx, drawing, canvas) {
             this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, length, height, this.currentColor, this.currentLineWidth);
         } else if (this.currentEditingMode == editingMode.line){
             this.currentShape = new Line(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
+        } else if (this.currentEditingMode == editingMode.ellipse){
+            this.currentShape = new Ellipse(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
         }
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawing.paint(ctx, canvas);
@@ -31,6 +33,10 @@ function Pencil(ctx, drawing, canvas) {
             this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, length, height, this.currentColor, this.currentLineWidth);
         } else if (this.currentEditingMode == editingMode.line){
             this.currentShape = new Line(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
+        } else if (this.currentEditingMode == editingMode.ellipse){
+			var length = this.DnD.endPointX - this.DnD.startPointX;
+			var height = this.DnD.endPointY - this.DnD.startPointY;
+            this.currentShape = new Ellipse(this.DnD.startPointX, this.DnD.startPointY, this.DnD.endPointX, this.DnD.endPointY, this.currentColor, this.currentLineWidth);
         }
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawing.addForm(this.currentShape);
@@ -56,6 +62,10 @@ function Pencil(ctx, drawing, canvas) {
 			}else if(radios[i].id == "butRect"){
 				this.currentEditingMode = editingMode.rect;
 				this.currentShape = new Rectangle(this.DnD.startPointX, this.DnD.startPointY, 0, 0, this.currentColor, this.currentLineWidth);
+				this.currentShape.paint(ctx, canvas);
+			}else if(radios[i].id == "butEllipse"){
+				this.currentEditingMode = editingMode.ellipse;
+				this.currentShape = new Ellipse(this.DnD.startPointX, this.DnD.startPointY, 0, 0, this.currentColor, this.currentLineWidth);
 				this.currentShape.paint(ctx, canvas);
 			}
 			

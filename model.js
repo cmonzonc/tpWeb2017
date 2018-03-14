@@ -5,7 +5,6 @@ function Drawing() {
     this.forms = new Array();
 
     this.removeForm = function(index) {
-        console.log('a');
         this.forms.splice(index, 1);
     }.bind(this);
 
@@ -41,4 +40,13 @@ function Rectangle(x1, y1, length, height, color, weight) {
     this.x1 = x1;
     this.y1 = y1;
     this.name = "Rectangle";
+}
+
+function Ellipse(x1, y1, length, height, color, weight) {
+	Form.call(this, color, weight);
+	this.height = height;
+    this.length = length;
+    this.x1 = x1;
+    this.y1 = y1;
+    this.name = "Ellipse";
 }

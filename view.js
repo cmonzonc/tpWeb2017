@@ -29,6 +29,13 @@ Rectangle.prototype.paint = function(ctx) {
     ctx.stroke();
 };
 
+Ellipse.prototype.paint = function(ctx) {
+    Form.prototype.paint.call(this,ctx);
+    var centroX = 800/2, centroY = 600/2, radioX = 100, radioY = 60, rotacion=0, ap = 0, af = 2*Math.PI, cR = true;
+    ctx.ellipse(this.x1, this.y1, this.length, this.height, rotacion, ap, af, cR);
+    ctx.stroke();
+}
+
 Drawing.prototype.updateShapeList = function(){
 
     var shapeIdentifer = this.forms.length-1;
@@ -47,8 +54,8 @@ Drawing.prototype.updateShapeList = function(){
         var textDescription = document.createTextNode(this.forms[shapeIdentifer].name);
     } else if(this.forms[shapeIdentifer] instanceof Line){
         var textDescription = document.createTextNode(this.forms[shapeIdentifer].name);
-    } else {
-        // var textDescription = document.createTextNode("Ellipse");
+    } else if(this.forms[shapeIdentifer] instanceof Ellipse){
+        var textDescription = document.createTextNode(this.forms[shapeIdentifer].name);
     }
     var li = document.createElement("li");
     li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center")
