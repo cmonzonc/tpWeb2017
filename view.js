@@ -18,6 +18,7 @@ Form.prototype.paint = function(ctx){
 
 Line.prototype.paint = function(ctx) {
     Form.prototype.paint.call(this,ctx);
+    ctx.setLineDash(this.dash);
     ctx.moveTo(this.x1, this.y1);
     ctx.lineTo(this.x2, this.y2);
     ctx.stroke();
@@ -25,13 +26,15 @@ Line.prototype.paint = function(ctx) {
 
 Rectangle.prototype.paint = function(ctx) {
     Form.prototype.paint.call(this,ctx);
+    ctx.setLineDash(this.dash);
     ctx.rect(this.x1, this.y1, this.length, this.height);
     ctx.stroke();
 };
 
 Ellipse.prototype.paint = function(ctx) {
     Form.prototype.paint.call(this,ctx);
-    var centroX = 800/2, centroY = 600/2, radioX = 100, radioY = 60, rotacion=0, ap = 0, af = 2*Math.PI, cR = true;
+    var rotacion=0, ap = 0, af = 2*Math.PI, cR = true;
+    ctx.setLineDash(this.dash);
     ctx.ellipse(this.x1, this.y1, this.length, this.height, rotacion, ap, af, cR);
     ctx.stroke();
 }
